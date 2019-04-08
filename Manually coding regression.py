@@ -55,3 +55,20 @@ def coefficient_of_determination(ys_orig,ys_line):
 
 r_squared = coefficient_of_determination(ys,regression_line)
 print(r_squared)
+
+#testing data set
+import random
+def create_dataset(hm,variance,step=2,correlation=False):
+    val = 1
+    ys = []
+    for i in range(hm):
+        y = val + random.randrange(-variance,variance)
+        ys.append(y)
+        if correlation and correlation == 'pos':
+            val+=step
+        elif correlation and correlation == 'neg':
+            val-=step
+    xs = [i for i in range(len(ys))]
+    
+    return np.array(xs, dtype=np.float64),np.array(ys,dtype=np.float64)
+    
