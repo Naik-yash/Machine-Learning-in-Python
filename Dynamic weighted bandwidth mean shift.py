@@ -6,20 +6,6 @@ from sklearn.datasets.samples_generator import make_blobs
 style.use('ggplot')
 
 X, y = make_blobs(n_samples=15, centers=3, n_features=2)
-##X = np.array([[1, 2],
-##              [1.5, 1.8],
-##              [5, 8],
-##              [8, 8],
-##              [1, 0.6],
-##              [9, 11],
-##              [8, 2],
-##              [10, 2],
-##              [9, 3]])
-
-
-##plt.scatter(X[:, 0],X[:, 1], marker = "x", s=150, linewidths = 5, zorder = 10)
-##plt.show()
-
 '''
 1. Start at every datapoint as a cluster center
 
