@@ -63,17 +63,18 @@ class Support_Vector_Machine:
         step_sizes = [self.max_feature_value * 0.1,
                       self.max_feature_value * 0.01,
                       # point of expense:
-                      self.max_feature_value * 0.001,]
+                      self.max_feature_value * 0.001,
+                      ]
 
         
         
         # extremely expensive
-        b_range_multiple = 5
+        b_range_multiple = 2
         # we dont need to take as small of steps
         # with b as we do w
         b_multiple = 5
         latest_optimum = self.max_feature_value*10
-
+        
         for step in step_sizes:
             w = np.array([latest_optimum,latest_optimum])
             # we can do this because convex
@@ -95,6 +96,7 @@ class Support_Vector_Machine:
                                 yi=i
                                 if not yi*(np.dot(w_t,xi)+b) >= 1:
                                     found_option = False
+                                    #print(xi,':',yi*(np.dot(w_t,xi)+b))
                                     
                         if found_option:
                             opt_dict[np.linalg.norm(w_t)] = [w_t,b]
@@ -111,6 +113,11 @@ class Support_Vector_Machine:
             self.w = opt_choice[0]
             self.b = opt_choice[1]
             latest_optimum = opt_choice[0][0]+step*2
+            
+        for i in self.data:
+            for xi in self.data[i]:
+                yi=i
+                print(xi,':',yi*(np.dot(self.w,xi)+self.b)) 
             
 
         def predict(self,features):
